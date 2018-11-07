@@ -1,6 +1,16 @@
 
+var url = window.location.href;
+
+var swLocation = '/pwa-twittor/sw.js';
+
+
 if ( navigator.serviceWorker ) {
-    navigator.serviceWorker.register('/sw.js');
+
+
+    if ( url.includes('localhost') ) {
+        swLocation = '/sw.js'
+    }
+    navigator.serviceWorker.register(swLocation);
 }
 
 
@@ -40,7 +50,7 @@ function crearMensajeHTML(mensaje, personaje) {
                 <br/>
                 ${ mensaje }
             </div>
-            
+
             <div class="arrow"></div>
         </div>
     </li>
@@ -69,7 +79,7 @@ function logIn( ingreso ) {
         avatarSel.removeClass('oculto');
 
         titulo.text('Seleccione Personaje');
-    
+
     }
 
 }
@@ -97,7 +107,7 @@ salirBtn.on('click', function() {
 nuevoBtn.on('click', function() {
 
     modal.removeClass('oculto');
-    modal.animate({ 
+    modal.animate({
         marginTop: '-=1000px',
         opacity: 1
     }, 200 );
@@ -106,7 +116,7 @@ nuevoBtn.on('click', function() {
 
 // Boton de cancelar mensaje
 cancelarBtn.on('click', function() {
-   modal.animate({ 
+   modal.animate({
        marginTop: '+=1000px',
        opacity: 0
     }, 200, function() {
